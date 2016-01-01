@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "AMDrawerViewController.h"
 
+#import "AMMainViewController.h"
+
 @interface AppDelegate ()
 
 @end
@@ -21,7 +23,7 @@
     
     self.window = window;
     
-    window.rootViewController = [[AMDrawerViewController alloc] init];
+    window.rootViewController = [[AMMainViewController alloc] init];
     
     [self.window makeKeyAndVisible];
     

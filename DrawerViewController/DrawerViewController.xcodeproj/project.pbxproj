@@ -14,6 +14,8 @@
 		A0E5FB271C33C5D600FE25A4 /* DrawerViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E5FB261C33C5D600FE25A4 /* DrawerViewControllerTests.m */; };
 		A0E5FB321C33C5D600FE25A4 /* DrawerViewControllerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E5FB311C33C5D600FE25A4 /* DrawerViewControllerUITests.m */; };
 		A0E5FB411C33C6D100FE25A4 /* AMDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E5FB401C33C6D100FE25A4 /* AMDrawerViewController.m */; };
+		A0EE89701C362D1600F48ADC /* AMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0EE896F1C362D1600F48ADC /* AMViewController.m */; };
+		A0EE89731C362DA300F48ADC /* AMMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0EE89721C362DA300F48ADC /* AMMainViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,10 @@
 		A0E5FB331C33C5D600FE25A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0E5FB3F1C33C6D100FE25A4 /* AMDrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMDrawerViewController.h; sourceTree = "<group>"; };
 		A0E5FB401C33C6D100FE25A4 /* AMDrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMDrawerViewController.m; sourceTree = "<group>"; };
+		A0EE896E1C362D1600F48ADC /* AMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMViewController.h; sourceTree = "<group>"; };
+		A0EE896F1C362D1600F48ADC /* AMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMViewController.m; sourceTree = "<group>"; };
+		A0EE89711C362DA300F48ADC /* AMMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMMainViewController.h; sourceTree = "<group>"; };
+		A0EE89721C362DA300F48ADC /* AMMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMMainViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +113,10 @@
 				A0E5FB0C1C33C5D600FE25A4 /* Supporting Files */,
 				A0E5FB3F1C33C6D100FE25A4 /* AMDrawerViewController.h */,
 				A0E5FB401C33C6D100FE25A4 /* AMDrawerViewController.m */,
+				A0EE896E1C362D1600F48ADC /* AMViewController.h */,
+				A0EE896F1C362D1600F48ADC /* AMViewController.m */,
+				A0EE89711C362DA300F48ADC /* AMMainViewController.h */,
+				A0EE89721C362DA300F48ADC /* AMMainViewController.m */,
 			);
 			path = DrawerViewController;
 			sourceTree = "<group>";
@@ -272,6 +282,8 @@
 			files = (
 				A0E5FB411C33C6D100FE25A4 /* AMDrawerViewController.m in Sources */,
 				A0E5FB111C33C5D600FE25A4 /* AppDelegate.m in Sources */,
+				A0EE89701C362D1600F48ADC /* AMViewController.m in Sources */,
+				A0EE89731C362DA300F48ADC /* AMMainViewController.m in Sources */,
 				A0E5FB0E1C33C5D600FE25A4 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -488,6 +500,7 @@
 				A0E5FB381C33C5D600FE25A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A0E5FB391C33C5D600FE25A4 /* Build configuration list for PBXNativeTarget "DrawerViewControllerTests" */ = {
 			isa = XCConfigurationList;
@@ -496,6 +509,7 @@
 				A0E5FB3B1C33C5D600FE25A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A0E5FB3C1C33C5D600FE25A4 /* Build configuration list for PBXNativeTarget "DrawerViewControllerUITests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +518,7 @@
 				A0E5FB3E1C33C5D600FE25A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -22,14 +22,6 @@
 
 @interface AMDrawerViewController ()
 
-/** leftView */
-@property (weak, nonatomic) UIView *leftView;
-
-/** rightView */
-@property (strong, nonatomic) UIView *rightView;
-
-/** mainView */
-@property (strong, nonatomic) UIView *mainView;
 
 @end
 
@@ -153,7 +145,7 @@
     
     leftView.backgroundColor = [UIColor purpleColor];
     
-    self.leftView = leftView;
+    _leftView = leftView;
 
     self.leftView.frame = self.view.bounds;
     
@@ -167,7 +159,7 @@
 
     self.rightView.frame = self.view.bounds;
     
-    self.rightView = rightView;
+    _rightView = rightView;
     
     [self.view addSubview:rightView];
     
@@ -177,7 +169,7 @@
     
     mainView.backgroundColor = [UIColor redColor];
     
-    self.mainView = mainView;
+    _mainView = mainView;
     
     [self.view addSubview:mainView];
     
