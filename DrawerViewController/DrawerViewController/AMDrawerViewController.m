@@ -15,7 +15,7 @@
 #define kScreenH [UIScreen mainScreen].bounds.size.height
 
 // 控制抽屉的大小 范围(0.1 ~ 0.5)
-#define kScale 0.2
+//#define kScale 0.2
 
 // 最终的 y 值
 #define kFinalY 80
@@ -67,7 +67,7 @@
         // 1.判断下 manView.x > screenW * 0.5 ，定位到右边 x = screenW
         if (self.mainView.frame.origin.x > 0.5 * kScreenW) { // 显示左边的 view
           
-            offsetX = kScreenW - kScale * kScreenW - self.mainView.frame.origin.x;
+            offsetX = kScreenW - self.scaleWidth * kScreenW - self.mainView.frame.origin.x;
             
             [UIView animateWithDuration:0.25 animations:^{
                 self.mainView.frame = [self changeFrameWithOffsetX:offsetX];
@@ -75,7 +75,7 @@
             
         } else if (CGRectGetMaxX(self.mainView.frame) < 0.5 * kScreenW) { // 显示右边的 view
             
-            offsetX = kScale * kScreenW - CGRectGetMaxX(self.mainView.frame);
+            offsetX = self.scaleWidth * kScreenW - CGRectGetMaxX(self.mainView.frame);
             
             [UIView animateWithDuration:0.25 animations:^{
                 self.mainView.frame = [self changeFrameWithOffsetX:offsetX];
@@ -100,7 +100,7 @@
     CGRect frame = self.mainView.frame;
     
     // 计算 manView y 轴偏移量 maxY : screenW * offsetx = dy
-    CGFloat offsetY = self.mainView.frame.origin.x < 0 ? -(offsetX * kFinalY / kScreenW) : offsetX * kFinalY / kScreenW;
+    CGFloat offsetY = self.mainView.frame.origin.x < 0 ? -(offsetX * kFinalY / kScreenW) * self.scaleHeight : offsetX * kFinalY / kScreenW * self.scaleHeight;
     
     // 计算 main 控件高度的减小量
     CGFloat offsetHeight = 2 * offsetY;
@@ -172,6 +172,10 @@
     _mainView = mainView;
     
     [self.view addSubview:mainView];
+    
+    // 比例系数默认等于0.2
+    self.scaleWidth = 0.2;
+    self.scaleHeight = 1.0;
     
 //    // 监听 mainView 的 frame，通过 frame 改变判断是 leftView 或者 rightView
 //    [self.mainView addObserver:self forKeyPath:keyPath(self.mainView, frame) options:(NSKeyValueObservingOptionNew) context:nil];
