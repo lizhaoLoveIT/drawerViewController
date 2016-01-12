@@ -7,8 +7,8 @@
 //
 
 #import "AMDrawerViewController.h"
+#import "AMMainView.h"
 
-#define keyPath(objc,keyPath) @(((void)objc.keyPath,#keyPath))
 
 // 屏幕的宽度和高度
 #define kScreenW [UIScreen mainScreen].bounds.size.width
@@ -156,7 +156,7 @@
     UIView *rightView = [[UIView alloc] initWithFrame:self.view.bounds];
     
     rightView.backgroundColor = [UIColor orangeColor];
-
+    
     self.rightView.frame = self.view.bounds;
     
     _rightView = rightView;
@@ -165,26 +165,33 @@
     
     
     // mainView
-    UIView *mainView = [[UIView alloc] initWithFrame:self.view.bounds];
+    AMMainView *mainView = [[AMMainView alloc] initWithFrame:self.view.bounds];
     
     mainView.backgroundColor = [UIColor redColor];
     
     _mainView = mainView;
     
+    __weak typeof(self) weakSelf = self;
+    
+    _mainView.block = ^{
+        [UIView animateWithDuration:0.25 animations:^{
+            weakSelf.mainView.frame = weakSelf.view.bounds;
+        }];
+    };
+    
+    // 添加 tap 敲击
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:_mainView action:@selector(tapMainView:)];
+    
+    [_mainView addGestureRecognizer:tap];
+    
     [self.view addSubview:mainView];
+    
+    // 给 mainView 添加个 tap 手势
+    // 创建点按手势 会把手势对象作为参数传到方法中去
     
     // 比例系数默认等于0.2
     self.scaleWidth = 0.2;
     self.scaleHeight = 1.0;
-    
-//    // 监听 mainView 的 frame，通过 frame 改变判断是 leftView 或者 rightView
-//    [self.mainView addObserver:self forKeyPath:keyPath(self.mainView, frame) options:(NSKeyValueObservingOptionNew) context:nil];
 }
-
-//- (void)dealloc
-//{
-//    [[NSNotificationCenter defaultCenter] removeObserver:self];
-//}
-
 
 @end

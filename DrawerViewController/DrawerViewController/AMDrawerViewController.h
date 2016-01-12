@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AMMainView.h"
 
 @interface AMDrawerViewController : UIViewController
 
@@ -18,7 +19,7 @@
 @property (strong, nonatomic, readonly) UIView *rightView;
 
 /** mainView */
-@property (strong, nonatomic, readonly) UIView *mainView;
+@property (strong, nonatomic, readonly) AMMainView *mainView;
 
 /** 控制抽屉的宽度 范围(小0.1 ~ 0.5大) */
 @property (assign, nonatomic) CGFloat scaleWidth;
