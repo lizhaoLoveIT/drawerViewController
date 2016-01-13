@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A00FED741C45306900395645 /* AMMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = A00FED731C45306900395645 /* AMMainView.m */; };
 		A0E5FB0E1C33C5D600FE25A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E5FB0D1C33C5D600FE25A4 /* main.m */; };
 		A0E5FB111C33C5D600FE25A4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E5FB101C33C5D600FE25A4 /* AppDelegate.m */; };
 		A0E5FB191C33C5D600FE25A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0E5FB181C33C5D600FE25A4 /* Assets.xcassets */; };
@@ -37,8 +36,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		A00FED721C45306900395645 /* AMMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMMainView.h; sourceTree = "<group>"; };
-		A00FED731C45306900395645 /* AMMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMMainView.m; sourceTree = "<group>"; };
 		A0E5FB091C33C5D600FE25A4 /* DrawerViewController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawerViewController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0E5FB0D1C33C5D600FE25A4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A0E5FB0F1C33C5D600FE25A4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -120,8 +117,6 @@
 				A0EE896F1C362D1600F48ADC /* AMViewController.m */,
 				A0EE89711C362DA300F48ADC /* AMMainViewController.h */,
 				A0EE89721C362DA300F48ADC /* AMMainViewController.m */,
-				A00FED721C45306900395645 /* AMMainView.h */,
-				A00FED731C45306900395645 /* AMMainView.m */,
 			);
 			path = DrawerViewController;
 			sourceTree = "<group>";
@@ -286,7 +281,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0E5FB411C33C6D100FE25A4 /* AMDrawerViewController.m in Sources */,
-				A00FED741C45306900395645 /* AMMainView.m in Sources */,
 				A0E5FB111C33C5D600FE25A4 /* AppDelegate.m in Sources */,
 				A0EE89701C362D1600F48ADC /* AMViewController.m in Sources */,
 				A0EE89731C362DA300F48ADC /* AMMainViewController.m in Sources */,

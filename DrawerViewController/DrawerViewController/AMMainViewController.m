@@ -28,8 +28,6 @@
     [self addChildViewController:vc];
     
     [self.mainView addSubview:vc.view];
-    
-    self.scaleHeight = 0.0;
 }
 
 - (void)didReceiveMemoryWarning {

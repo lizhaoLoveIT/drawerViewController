@@ -7,7 +7,6 @@
 //
 
 #import "AMDrawerViewController.h"
-#import "AMMainView.h"
 
 
 // 屏幕的宽度和高度
@@ -20,7 +19,7 @@
 // 最终的 y 值
 #define kFinalY 80
 
-@interface AMDrawerViewController ()
+@interface AMDrawerViewController ()<UIGestureRecognizerDelegate>
 
 
 @end
@@ -35,6 +34,7 @@
     
     // 设置手势
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
+    pan.delegate = self;
     [self.view addGestureRecognizer:pan];
 }
 
@@ -44,8 +44,14 @@
  */
 - (void)pan:(UIPanGestureRecognizer *)pan
 {
-    // 获取手势的触摸点
+//    // 获取手势的触摸点
 //    CGPoint currentPoint = [pan locationInView:self.view];
+//    if (pan.state == UIGestureRecognizerStateBegan) {
+//        if (currentPoint.x >= 50) {
+//            return;
+//        }
+//    }
+    
     // 获取手势的偏移量
     CGPoint transformPoint = [pan translationInView:self.view];
     
@@ -89,6 +95,17 @@
         }
     }
 }
+
+#pragma mark - UIGestureRecognizerDelegate
+// 是否允许接收手指的触摸点
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
+    // 获取当前的触摸点
+    CGPoint currentPoint = [touch locationInView:self.mainView];
+    
+    CGFloat selfWidth = self.view.frame.size.width;
+    return (currentPoint.x < self.scalePan * selfWidth) || (currentPoint.x > selfWidth * (1 - self.scalePan)) ? YES : NO;
+}
+
 
 #pragma mark - 改变 mainView 的 frame
 /**
@@ -140,58 +157,33 @@
  */
 - (void)setupViews
 {
+
     // leftView
     UIView *leftView = [[UIView alloc] initWithFrame:self.view.bounds];
     
-    leftView.backgroundColor = [UIColor purpleColor];
-    
     _leftView = leftView;
-
-    self.leftView.frame = self.view.bounds;
     
     [self.view addSubview:leftView];
     
     
     // rightView
     UIView *rightView = [[UIView alloc] initWithFrame:self.view.bounds];
-    
-    rightView.backgroundColor = [UIColor orangeColor];
-    
-    self.rightView.frame = self.view.bounds;
-    
     _rightView = rightView;
     
     [self.view addSubview:rightView];
     
     
     // mainView
-    AMMainView *mainView = [[AMMainView alloc] initWithFrame:self.view.bounds];
-    
-    mainView.backgroundColor = [UIColor redColor];
+    UIView *mainView = [[UIView alloc] initWithFrame:self.view.bounds];
     
     _mainView = mainView;
-    
-    __weak typeof(self) weakSelf = self;
-    
-    _mainView.block = ^{
-        [UIView animateWithDuration:0.25 animations:^{
-            weakSelf.mainView.frame = weakSelf.view.bounds;
-        }];
-    };
-    
-    // 添加 tap 敲击
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:_mainView action:@selector(tapMainView:)];
-    
-    [_mainView addGestureRecognizer:tap];
-    
+  
     [self.view addSubview:mainView];
-    
-    // 给 mainView 添加个 tap 手势
-    // 创建点按手势 会把手势对象作为参数传到方法中去
     
     // 比例系数默认等于0.2
     self.scaleWidth = 0.2;
     self.scaleHeight = 1.0;
+    self.scalePan = 0.23;
 }
 
 @end

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AMMainView.h"
 
 @interface AMDrawerViewController : UIViewController
 
@@ -19,12 +18,15 @@
 @property (strong, nonatomic, readonly) UIView *rightView;
 
 /** mainView */
-@property (strong, nonatomic, readonly) AMMainView *mainView;
+@property (strong, nonatomic, readonly) UIView *mainView;
 
 /** 控制抽屉的宽度 范围(小0.1 ~ 0.5大) */
 @property (assign, nonatomic) CGFloat scaleWidth;
 
 /** 高度缩小比例，范围(大0.0 ~ 1.0小) */
 @property (assign, nonatomic) CGFloat scaleHeight; ;
+
+/** 控制允许左右滑动的触摸点比例，默认时2.3 */
+@property (assign, nonatomic) CGFloat scalePan;
 
 @end
