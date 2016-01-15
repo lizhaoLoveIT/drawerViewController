@@ -39,6 +39,12 @@
 /** 将 mainView 拖过 self.view 的百分之多少不会自动归位 默认 0.4*/
 @property (assign, nonatomic) CGFloat scaleOfSelfView;
 
+/** 取消右边的 view 展示(取消左划)，默认为 No */
+@property (assign, nonatomic) BOOL noLeftPan;
+
+/** 取消左边 view 的展示(取消右滑)，默认为 No */
+@property (assign, nonatomic) BOOL noRightPan;
+
 /** 最终的 frame 值 */
 @property (assign, nonatomic, readonly) CGRect finalFrame;
 

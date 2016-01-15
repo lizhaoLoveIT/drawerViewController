@@ -52,6 +52,30 @@
     // 获取 x 轴的偏移量
     CGFloat offsetX = transformPoint.x;
     
+    // 判断是否允许左右滑动
+    if (self.noLeftPan) {
+        if (self.mainView.frame.origin.x == 0) {
+            if (offsetX <= 0) {
+                return;
+            }
+        } else if (self.mainView.frame.origin.x < 0) {
+            [self setMainViewFrameZero];
+            return;
+        }
+    }
+    
+    // 判断是否允许右滑
+    if (self.noRightPan) {
+        if (self.mainView.frame.origin.x == 0) {
+            if (offsetX >= 0) {
+                return;
+            }
+        } else if (self.mainView.frame.origin.x > 0) {
+            [self setMainViewFrameZero];
+            return;
+        }
+    }
+    
     // 根据 offsetX 修改 view 的 frame
     self.mainView.frame = [self changeFrameWithOffsetX:offsetX];
     
@@ -83,11 +107,20 @@
             }];
         } else {
             [UIView animateWithDuration:self.animationDefaultTime animations:^{
-                self.mainView.frame = self.view.bounds;
+                [self setMainViewFrameZero];
             }];
         }
     }
 }
+
+#pragma mark - 执行复位操作 即 mainView.x == 0
+- (void)setMainViewFrameZero
+{
+    self.mainView.frame = self.view.bounds;
+
+}
+
+
 
 #pragma mark - UIGestureRecognizerDelegate
 
@@ -126,16 +159,11 @@
     // 计算 main 控件高度的减小量
     CGFloat offsetHeight = 2 * offsetY;
     
-    // 计算 main 控件宽度的减小量
-    CGFloat offsetWidth = offsetHeight * frame.size.width / frame.size.height;
-    
     frame.origin.x += offsetX;
     
     frame.origin.y += offsetY;
     
     frame.size.height = frame.size.height - offsetHeight;
-    
-    frame.size.width = frame.size.width - offsetWidth;
     
     return frame;
 }
@@ -161,26 +189,6 @@
  */
 - (void)setupViews
 {
-    // leftView
-    UIView *leftView = [[UIView alloc] initWithFrame:self.view.bounds];
-    leftView.backgroundColor = [UIColor orangeColor];
-    _leftView = leftView;
-    [self.view addSubview:leftView];
-    
-    
-    // rightView
-    UIView *rightView = [[UIView alloc] initWithFrame:self.view.bounds];
-    rightView.backgroundColor = [UIColor purpleColor];
-    _rightView = rightView;
-    [self.view addSubview:rightView];
-    
-    
-    // mainView
-    UIView *mainView = [[UIView alloc] initWithFrame:self.view.bounds];
-    mainView.backgroundColor = [UIColor redColor];
-    _mainView = mainView;
-    [self.view addSubview:mainView];
-    
     // 设置比例系数默认值
     self.scaleWidth = 0.2;
     self.yHeight = 80;
@@ -188,7 +196,31 @@
     self.scalePan = 0.3;
     self.animationDefaultTime = 0.25;
     self.scaleOfSelfView = 0.4;
+    self.noLeftPan = NO;
+    self.noRightPan = NO;
     _finalFrame = [self changeFrameWithOffsetX:(1 - self.scaleWidth) * self.view.bounds.size.width];
+    
+    if (!self.noRightPan) {
+        // leftView
+        UIView *leftView = [[UIView alloc] initWithFrame:self.view.bounds];
+        leftView.backgroundColor = [UIColor orangeColor];
+        _leftView = leftView;
+        [self.view addSubview:leftView];
+    }
+    
+    if (!self.noLeftPan) {
+        // rightView
+        UIView *rightView = [[UIView alloc] initWithFrame:self.view.bounds];
+            rightView.backgroundColor = [UIColor purpleColor];
+        _rightView = rightView;
+        [self.view addSubview:rightView];
+    }
+    
+    // mainView
+    UIView *mainView = [[UIView alloc] initWithFrame:self.view.bounds];
+    mainView.backgroundColor = [UIColor redColor];
+    _mainView = mainView;
+    [self.view addSubview:mainView];
 }
 
 @end
