@@ -34,9 +34,9 @@
 #pragma mark - tap
 - (void)tap:(UITapGestureRecognizer *)tap
 {
-    [UIView animateWithDuration:self.animationDefaultTime animations:^{
+    [UIView animateKeyframesWithDuration:self.animationDefaultTime delay:0.0 options:(UIViewKeyframeAnimationOptionLayoutSubviews) animations:^{
         self.mainView.frame = self.view.bounds;
-    }];
+    } completion:nil];
 }
 
 
@@ -93,22 +93,25 @@
         { // 显示左边的 view
           
             offsetX = [UIScreen mainScreen].bounds.size.width - self.scaleWidth * [UIScreen mainScreen].bounds.size.width - self.mainView.frame.origin.x;
-            
-            [UIView animateWithDuration:self.animationDefaultTime animations:^{
+
+            [UIView animateKeyframesWithDuration:self.animationDefaultTime delay:0.0 options:(UIViewKeyframeAnimationOptionLayoutSubviews) animations:^{
                 self.mainView.frame = [self changeFrameWithOffsetX:offsetX];
-            }];
+            } completion:nil];
+            
             
         } else if (CGRectGetMaxX(self.mainView.frame) < (1 - self.scaleOfSelfView) * [UIScreen mainScreen].bounds.size.width) { // 显示右边的 view
             
             offsetX = self.scaleWidth * [UIScreen mainScreen].bounds.size.width - CGRectGetMaxX(self.mainView.frame);
             
-            [UIView animateWithDuration:self.animationDefaultTime animations:^{
+            [UIView animateKeyframesWithDuration:self.animationDefaultTime delay:0.0 options:(UIViewKeyframeAnimationOptionLayoutSubviews) animations:^{
                 self.mainView.frame = [self changeFrameWithOffsetX:offsetX];
-            }];
+            } completion:nil];
+            
         } else {
-            [UIView animateWithDuration:self.animationDefaultTime animations:^{
+            
+            [UIView animateKeyframesWithDuration:self.animationDefaultTime delay:0.0 options:(UIViewKeyframeAnimationOptionLayoutSubviews) animations:^{
                 [self setMainViewFrameZero];
-            }];
+            } completion:nil];
         }
     }
 }
@@ -189,17 +192,6 @@
  */
 - (void)setupViews
 {
-    // 设置比例系数默认值
-    self.scaleWidth = 0.2;
-    self.yHeight = 80;
-    self.scaleHeight = 1.0;
-    self.scalePan = 0.3;
-    self.animationDefaultTime = 0.25;
-    self.scaleOfSelfView = 0.4;
-    self.noLeftPan = NO;
-    self.noRightPan = NO;
-    _finalFrame = [self changeFrameWithOffsetX:(1 - self.scaleWidth) * self.view.bounds.size.width];
-    
     if (!self.noRightPan) {
         // leftView
         UIView *leftView = [[UIView alloc] initWithFrame:self.view.bounds];
@@ -221,6 +213,19 @@
     mainView.backgroundColor = [UIColor redColor];
     _mainView = mainView;
     [self.view addSubview:mainView];
+    
+    
+    // 设置比例系数默认值
+    self.scaleWidth = 0.2;
+    self.yHeight = 80;
+    self.scaleHeight = 1.0;
+    self.scalePan = 0.3;
+    self.animationDefaultTime = 0.25;
+    self.scaleOfSelfView = 0.4;
+    self.noLeftPan = NO;
+    self.noRightPan = NO;
+    _finalFrame = [self changeFrameWithOffsetX:(1 - self.scaleWidth) * self.view.bounds.size.width];
+    
 }
 
 @end

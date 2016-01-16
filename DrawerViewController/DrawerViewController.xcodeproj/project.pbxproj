@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A03942D21C492EAD00C9A4A5 /* AMMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A03942D11C492EAD00C9A4A5 /* AMMainViewController.m */; };
 		A0E5FB0E1C33C5D600FE25A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E5FB0D1C33C5D600FE25A4 /* main.m */; };
 		A0E5FB111C33C5D600FE25A4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E5FB101C33C5D600FE25A4 /* AppDelegate.m */; };
 		A0E5FB191C33C5D600FE25A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0E5FB181C33C5D600FE25A4 /* Assets.xcassets */; };
@@ -14,6 +15,8 @@
 		A0E5FB271C33C5D600FE25A4 /* DrawerViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E5FB261C33C5D600FE25A4 /* DrawerViewControllerTests.m */; };
 		A0E5FB321C33C5D600FE25A4 /* DrawerViewControllerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E5FB311C33C5D600FE25A4 /* DrawerViewControllerUITests.m */; };
 		A0E5FB411C33C6D100FE25A4 /* AMDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E5FB401C33C6D100FE25A4 /* AMDrawerViewController.m */; };
+		A0EA68421C49DAD20042D0F8 /* AMOneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0EA68411C49DAD20042D0F8 /* AMOneViewController.m */; };
+		A0EA68441C49DB7A0042D0F8 /* AMOneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0EA68431C49DB7A0042D0F8 /* AMOneViewController.xib */; };
 		A0EE89701C362D1600F48ADC /* AMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0EE896F1C362D1600F48ADC /* AMViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A03942D01C492EAD00C9A4A5 /* AMMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMMainViewController.h; sourceTree = "<group>"; };
+		A03942D11C492EAD00C9A4A5 /* AMMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMMainViewController.m; sourceTree = "<group>"; };
 		A0E5FB091C33C5D600FE25A4 /* DrawerViewController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawerViewController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0E5FB0D1C33C5D600FE25A4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A0E5FB0F1C33C5D600FE25A4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -50,6 +55,9 @@
 		A0E5FB331C33C5D600FE25A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0E5FB3F1C33C6D100FE25A4 /* AMDrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMDrawerViewController.h; sourceTree = "<group>"; };
 		A0E5FB401C33C6D100FE25A4 /* AMDrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMDrawerViewController.m; sourceTree = "<group>"; };
+		A0EA68401C49DAD20042D0F8 /* AMOneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMOneViewController.h; sourceTree = "<group>"; };
+		A0EA68411C49DAD20042D0F8 /* AMOneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMOneViewController.m; sourceTree = "<group>"; };
+		A0EA68431C49DB7A0042D0F8 /* AMOneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMOneViewController.xib; sourceTree = "<group>"; };
 		A0EE896E1C362D1600F48ADC /* AMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMViewController.h; sourceTree = "<group>"; };
 		A0EE896F1C362D1600F48ADC /* AMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,6 +120,11 @@
 				A0E5FB401C33C6D100FE25A4 /* AMDrawerViewController.m */,
 				A0EE896E1C362D1600F48ADC /* AMViewController.h */,
 				A0EE896F1C362D1600F48ADC /* AMViewController.m */,
+				A03942D01C492EAD00C9A4A5 /* AMMainViewController.h */,
+				A03942D11C492EAD00C9A4A5 /* AMMainViewController.m */,
+				A0EA68401C49DAD20042D0F8 /* AMOneViewController.h */,
+				A0EA68411C49DAD20042D0F8 /* AMOneViewController.m */,
+				A0EA68431C49DB7A0042D0F8 /* AMOneViewController.xib */,
 			);
 			path = DrawerViewController;
 			sourceTree = "<group>";
@@ -249,6 +262,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0EA68441C49DB7A0042D0F8 /* AMOneViewController.xib in Resources */,
 				A0E5FB1C1C33C5D600FE25A4 /* LaunchScreen.storyboard in Resources */,
 				A0E5FB191C33C5D600FE25A4 /* Assets.xcassets in Resources */,
 			);
@@ -278,6 +292,8 @@
 				A0E5FB411C33C6D100FE25A4 /* AMDrawerViewController.m in Sources */,
 				A0E5FB111C33C5D600FE25A4 /* AppDelegate.m in Sources */,
 				A0EE89701C362D1600F48ADC /* AMViewController.m in Sources */,
+				A0EA68421C49DAD20042D0F8 /* AMOneViewController.m in Sources */,
+				A03942D21C492EAD00C9A4A5 /* AMMainViewController.m in Sources */,
 				A0E5FB0E1C33C5D600FE25A4 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
