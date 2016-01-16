@@ -34,9 +34,9 @@
 #pragma mark - tap
 - (void)tap:(UITapGestureRecognizer *)tap
 {
-    [UIView animateWithDuration:self.animationDefaultTime animations:^{
+    [UIView animateKeyframesWithDuration:self.animationDefaultDuration delay:0.0 options:(UIViewKeyframeAnimationOptionLayoutSubviews) animations:^{
         self.mainView.frame = self.view.bounds;
-    }];
+    } completion:nil];
 }
 
 
@@ -59,7 +59,7 @@
                 return;
             }
         } else if (self.mainView.frame.origin.x < 0) {
-            [self setMainViewFrameZero];
+            self.mainView.frame = self.view.bounds;
             return;
         }
     }
@@ -71,7 +71,7 @@
                 return;
             }
         } else if (self.mainView.frame.origin.x > 0) {
-            [self setMainViewFrameZero];
+            self.mainView.frame = self.view.bounds;
             return;
         }
     }
@@ -88,36 +88,32 @@
     // 判断当手势结束的时候，定位
     if (pan.state == UIGestureRecognizerStateEnded) {
         // 定位
-        // 1.判断下 manView.x > screenW * scaleOfSelfView ，定位到右边 x = screenW
-        if (self.mainView.frame.origin.x > self.scaleOfSelfView * [UIScreen mainScreen].bounds.size.width)
+        // 1.判断下 manView.x > screenW * finalScaleWithoutReset ，定位到右边 x = screenW
+        if (self.mainView.frame.origin.x > self.finalScaleWithoutReset * [UIScreen mainScreen].bounds.size.width)
         { // 显示左边的 view
           
-            offsetX = [UIScreen mainScreen].bounds.size.width - self.scaleWidth * [UIScreen mainScreen].bounds.size.width - self.mainView.frame.origin.x;
-            
-            [UIView animateWithDuration:self.animationDefaultTime animations:^{
+            offsetX = [UIScreen mainScreen].bounds.size.width - self.finalWidthScale * [UIScreen mainScreen].bounds.size.width - self.mainView.frame.origin.x;
+
+            [UIView animateKeyframesWithDuration:self.animationDefaultDuration delay:0.0 options:(UIViewKeyframeAnimationOptionLayoutSubviews) animations:^{
                 self.mainView.frame = [self changeFrameWithOffsetX:offsetX];
-            }];
+            } completion:nil];
             
-        } else if (CGRectGetMaxX(self.mainView.frame) < (1 - self.scaleOfSelfView) * [UIScreen mainScreen].bounds.size.width) { // 显示右边的 view
             
-            offsetX = self.scaleWidth * [UIScreen mainScreen].bounds.size.width - CGRectGetMaxX(self.mainView.frame);
+        } else if (CGRectGetMaxX(self.mainView.frame) < (1 - self.finalScaleWithoutReset) * [UIScreen mainScreen].bounds.size.width) { // 显示右边的 view
             
-            [UIView animateWithDuration:self.animationDefaultTime animations:^{
+            offsetX = self.finalWidthScale * [UIScreen mainScreen].bounds.size.width - CGRectGetMaxX(self.mainView.frame);
+            
+            [UIView animateKeyframesWithDuration:self.animationDefaultDuration delay:0.0 options:(UIViewKeyframeAnimationOptionLayoutSubviews) animations:^{
                 self.mainView.frame = [self changeFrameWithOffsetX:offsetX];
-            }];
+            } completion:nil];
+            
         } else {
-            [UIView animateWithDuration:self.animationDefaultTime animations:^{
-                [self setMainViewFrameZero];
-            }];
+            
+            [UIView animateKeyframesWithDuration:self.animationDefaultDuration delay:0.0 options:(UIViewKeyframeAnimationOptionLayoutSubviews) animations:^{
+                self.mainView.frame = self.view.bounds;
+            } completion:nil];
         }
     }
-}
-
-#pragma mark - 执行复位操作 即 mainView.x == 0
-- (void)setMainViewFrameZero
-{
-    self.mainView.frame = self.view.bounds;
-
 }
 
 
@@ -132,17 +128,12 @@
         
         CGFloat selfWidth = self.view.frame.size.width;
         
-        return (currentPoint.x < self.scalePan * selfWidth) || (currentPoint.x > selfWidth * (1 - self.scalePan)) ? YES : NO;
+        return (currentPoint.x < self.originalPanScale * selfWidth) || (currentPoint.x > selfWidth * (1 - self.originalPanScale)) ? YES : NO;
     } else {
         return self.mainView.frame.origin.x != 0 ? YES : NO;
     }
     
 }
-
-//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-//{
-//    return YES;
-//}
 
 #pragma mark - 改变 mainView 的 frame
 /**
@@ -154,7 +145,7 @@
     CGRect frame = self.mainView.frame;
     
     // 计算 manView y 轴偏移量 maxY : screenW * offsetx = dy
-    CGFloat offsetY = self.mainView.frame.origin.x < 0 ? -(offsetX * self.yHeight / [UIScreen mainScreen].bounds.size.width) * self.scaleHeight : offsetX * self.yHeight / [UIScreen mainScreen].bounds.size.width * self.scaleHeight;
+    CGFloat offsetY = self.mainView.frame.origin.x < 0 ? -(offsetX * self.finalY / [UIScreen mainScreen].bounds.size.width) : offsetX * self.finalY / [UIScreen mainScreen].bounds.size.width;
     
     // 计算 main 控件高度的减小量
     CGFloat offsetHeight = 2 * offsetY;
@@ -189,17 +180,6 @@
  */
 - (void)setupViews
 {
-    // 设置比例系数默认值
-    self.scaleWidth = 0.2;
-    self.yHeight = 80;
-    self.scaleHeight = 1.0;
-    self.scalePan = 0.3;
-    self.animationDefaultTime = 0.25;
-    self.scaleOfSelfView = 0.4;
-    self.noLeftPan = NO;
-    self.noRightPan = NO;
-    _finalFrame = [self changeFrameWithOffsetX:(1 - self.scaleWidth) * self.view.bounds.size.width];
-    
     if (!self.noRightPan) {
         // leftView
         UIView *leftView = [[UIView alloc] initWithFrame:self.view.bounds];
@@ -221,6 +201,32 @@
     mainView.backgroundColor = [UIColor redColor];
     _mainView = mainView;
     [self.view addSubview:mainView];
+    
+    
+    // 设置比例系数默认值
+    self.finalWidthScale = 0.2;
+    self.finalY = 80;
+    self.originalPanScale = 0.3;
+    self.animationDefaultDuration = 0.25;
+    self.finalScaleWithoutReset = 0.4;
+    self.noLeftPan = NO;
+    self.noRightPan = NO;
+    _finalFrame = [self changeFrameWithOffsetX:(1 - self.finalWidthScale) * self.view.bounds.size.width];
+    
 }
+
+#pragma mark - 发现外界重新设置了 finalY、finalWidthScale 的值时
+- (void)setFinalY:(CGFloat)finalY
+{
+    _finalY = finalY;
+    _finalFrame = [self changeFrameWithOffsetX:(1 - self.finalWidthScale) * self.view.bounds.size.width];
+}
+
+- (void)setFinalWidthScale:(CGFloat)finalWidthScale
+{
+    _finalWidthScale = finalWidthScale;
+    _finalFrame = [self changeFrameWithOffsetX:(1 - self.finalWidthScale) * self.view.bounds.size.width];
+}
+
 
 @end
