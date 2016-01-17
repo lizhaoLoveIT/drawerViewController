@@ -73,7 +73,7 @@
 {
     if (self.leftView == nil) {
         UIView *leftView = [[UIView alloc] initWithFrame:self.view.bounds];
-        leftView.backgroundColor = [UIColor orangeColor];
+        leftView.backgroundColor = [UIColor purpleColor];
         _leftView = leftView;
         [self.view addSubview:leftView];
     }
@@ -86,7 +86,7 @@
 {
     if (self.rightView == nil) {
         UIView *rightView = [[UIView alloc] initWithFrame:self.view.bounds];
-        rightView.backgroundColor = [UIColor purpleColor];
+        rightView.backgroundColor = [UIColor grayColor];
         _rightView = rightView;
         [self.view addSubview:rightView];
     }
