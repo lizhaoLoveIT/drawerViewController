@@ -346,12 +346,23 @@
 {
     // 如果 mainView.x 小于0，则看见的时 rightView，如果 mainView.x 大于0，则看见的时 leftView
     if (self.mainView.frame.origin.x <= 0) { // 向左划
-        self.leftView.hidden = YES;
-        self.rightView.hidden = NO;
+        [self isLeftPan];
     } else { // 向右划
-        self.leftView.hidden = NO;
-        self.rightView.hidden = YES;
+        [self isRightPan];
     }
+}
+
+- (void)isLeftPan
+{
+    self.leftView.hidden = YES;
+    self.rightView.hidden = NO;
+}
+
+- (void)isRightPan
+{
+    self.leftView.hidden = NO;
+    self.rightView.hidden = YES;
+    
 }
 
 #pragma mark - 给外界调用的接口
@@ -367,6 +378,7 @@
     if (self.noRightPan) {
         return;
     }
+    [self isRightPan];
     [self changeMainViewFrameByFrame:self.finalRightFrame inSituation:AMDrawerViewControllerSituationNoSituation withAnimationBlock:animationBlock andCompletionBlock:completionBlock];
 }
 
@@ -378,6 +390,7 @@
     if (self.noLeftPan) {
         return;
     }
+    [self isLeftPan];
     [self changeMainViewFrameByFrame:self.finalLeftFrame inSituation:AMDrawerViewControllerSituationNoSituation withAnimationBlock:animationBlock andCompletionBlock:completionBlock];
 }
 
