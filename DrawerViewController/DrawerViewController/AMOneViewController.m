@@ -87,7 +87,9 @@
 }
 
 /**
- * 我被敲击了
+ * 如果没有设置这个代理，点击 mainView 会默认还原初始位置，如果设置了代理，需要自己实现还原初始位置的代码
+ * 调用-(void)restoreMainViewPoisitionToOriginalWithSituation:withAnimationBlock:WithCompletionBlock:
+ * 你可以在 block 中实现相应的动画效果
  */
 - (void)drawerViewController:(AMDrawerViewController *)drawerViewController tapMainView:(UIView *)mainView
 {

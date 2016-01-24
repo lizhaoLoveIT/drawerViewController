@@ -26,7 +26,8 @@ typedef enum : NSUInteger {
 /**
  * 监听到用户 tap mainView。如果你没有设置该代理，mainView 不在初始位置的时候，
  * 当你 tap mainView ，我们会帮你将 mainView 还原到初始位置，如果你设置了该代理，则需要你自己调用
- * - (void)restoreMainViewPoisitionToOriginalWithSituation:withAnimationBlock:WithCompletionBlock:
+ * 
+ * -(void)restoreMainViewPoisitionToOriginalWithSituation:withAnimationBlock:WithCompletionBlock:
  方法，你可以将你的代码写到对应的 block 中，我们会相应的为您实现动画效果
  */
 - (void)drawerViewController:(AMDrawerViewController *)drawerViewController tapMainView:(UIView *)mainView;
